@@ -14,12 +14,14 @@ function updateTime(){
         'Sabtu'
     ]
 
+    const dayName = day[now.getDay()];
+
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     const dateTime = now.toLocaleDateString('id-ID', options);
     const time = now.toLocaleTimeString('id-ID', { hour12: false });
 
-    currentTime.innerHTML = `${dateTime} <br> ${time}`;
+    currentTime.innerHTML = `${dayName} ,${dateTime} <br> ${time}`;
 }
 
 setInterval(updateTime, 1000);
