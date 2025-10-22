@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TO DO LIST APP</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+      <div class="title">
+        <h1>TO DO LIST APP</h1>
+      </div>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <section class="profileSection">
+        <div class="profile-time">
+          <div class="profile">
+            <h2>Sean Lucky Khosasih</h2>
+            <p>Project Manager</p>
+          </div>
+          <div class="time" id="currentTime"></div>
+        </div>
+      </section>
+      <section class="input-section">
+        <h2>Input your Task Below:</h2>
+        <textarea name="inputTodo" id="inputTodo" placeholder="Please input your task here!"></textarea>
+        <div class="inputForm">
+          <div class="priorityForm">
+            <label for="priorityLevel">PRIORITY LEVEL</label>
+            <select name="priorityLevel" id="priorityLevel">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="deadlineForm">
+            <label for="deadlineSelect">SET DEADLINE</label>
+            <input type="date" id="deadlineSelect">
+          </div>
+        </div>
+      </section>
+
+      <section class="todo-done-section">
+        <div class="todo-done-container">
+          <div class="todo">
+            <h2>TO DO LIST</h2>
+            <div id="todoList">
+              <table id="todoTable">
+                <thead> 
+                  <tr>
+                    <th>Status</th>
+                    <th>Task</th>
+                    <th>priority</th>
+                    <th>Deadline Time</th>
+                    <th>Deadline Status</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="done">
+            <h2>DONE LIST</h2>
+            <div class="doneList"></div>
+            <button class="deleteAllBtn" id="deleteAllBtn">Delete All</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+<script src="script.js"></script>
+</html>
+
