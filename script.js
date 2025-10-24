@@ -5,6 +5,18 @@ const deadlineSelect = document.getElementById("deadlineSelect");
 const submitBtn = document.getElementById("submitBtn");
 const todoTableBody = document.getElementById("todoTable").querySelector("tbody");
 const doneList = document.getElementById("doneList");
+const deleteAllBtn = document.getElementById("deleteAllBtn");
+
+function saveTasks() {
+    localStorage.setItem('todoTasks', JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    const storedTasks = localStorage.getItem('todoTasks');
+    if (storedTasks) {
+        tasks = JSON.parse(storedTasks);
+    }
+}
 
 function updateTime(){
     const now = new Date();
@@ -33,6 +45,7 @@ setInterval(updateTime, 1000);
 updateTime();
 
 let tasks = [];
+loadTasks();
 
 submitBtn.addEventListener("click",()=>{
     const taskText = inputTodo.value.trim();         
@@ -59,6 +72,7 @@ submitBtn.addEventListener("click",()=>{
     deadlineSelect.value = " ";
 
     renderTodos();
+    saveTasks();
 });
 
 function getDeadlineStatus(deadlineValue) {
@@ -94,16 +108,18 @@ function renderTodos() {
         const checkbox = row.querySelector('input[type="checkbox"]');
         checkbox.addEventListener("change", () => {
             task.isDone = checkbox.checked;
-            renderDoneList(); 
+            renderTodos();
+            saveTasks();
         });
 
         const deleteBtn = row.querySelector(".delete-btn");
         deleteBtn.addEventListener("click", () => {
             tasks = tasks.filter(t => t.id !== task.id); 
             renderTodos(); 
+            saveTasks();
         });
     });
-
+    renderDoneList();
 }
 
 function renderDoneList() {
@@ -118,3 +134,12 @@ function renderDoneList() {
           doneList.appendChild(li);
       });
 }
+
+deleteAllBtn.addEventListener("click",()=>{
+    tasks = tasks.filter(task => !task.isDone);
+    renderDoneList();
+    saveTasks();
+});
+
+renderTodos();
+renderDoneList();
