@@ -123,6 +123,11 @@ th, td {
   margin-top: 20px;
 }
 
+.doneList{
+  margin-left: 20px;
+  padding: 10px;
+}
+
 .deleteAllBtn, .delete-btn {
   margin-top: 10px;
   padding: 8px 15px;

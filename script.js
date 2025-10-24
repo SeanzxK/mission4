@@ -4,6 +4,7 @@ const priorityLevel = document.getElementById("priorityLevel");
 const deadlineSelect = document.getElementById("deadlineSelect");
 const submitBtn = document.getElementById("submitBtn");
 const todoTableBody = document.getElementById("todoTable").querySelector("tbody");
+const doneList = document.getElementById("doneList");
 
 function updateTime(){
     const now = new Date();
@@ -80,7 +81,7 @@ function renderTodos() {
         const row = document.createElement("tr");
         
         row.innerHTML = `
-        <td><input type="checkbox"></td>
+        <td><input type="checkbox" ${task.isDone ? "checked" : ""}></td>
         <td>${task.taskText}</td>
         <td>${task.priorityValue}</td>
         <td>${task.deadlineValue}</td>
@@ -90,6 +91,12 @@ function renderTodos() {
         
         todoTableBody.appendChild(row);
 
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener("change", () => {
+            task.isDone = checkbox.checked;
+            renderDoneList(); 
+        });
+
         const deleteBtn = row.querySelector(".delete-btn");
         deleteBtn.addEventListener("click", () => {
             tasks = tasks.filter(t => t.id !== task.id); 
@@ -97,7 +104,17 @@ function renderTodos() {
         });
     });
 
-    
-    
 }
 
+function renderDoneList() {
+    doneList.innerHTML = ""; 
+
+    tasks
+      .filter(task => task.isDone) 
+      .forEach(task => {
+          const li = document.createElement("li");
+          li.textContent = task.taskText;
+          li.classList.add("doneList");
+          doneList.appendChild(li);
+      });
+}
