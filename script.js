@@ -90,9 +90,13 @@ function getDeadlineStatus(deadlineValue) {
 
 function renderTodos() {
     todoTableBody.innerHTML = "";
-    
+
     tasks.forEach(task => {
         const row = document.createElement("tr");
+        
+        if(task.isDone){
+            row.classList.add("task-done");
+        }
         
         row.innerHTML = `
         <td><input type="checkbox" ${task.isDone ? "checked" : ""}></td>
@@ -136,7 +140,8 @@ function renderDoneList() {
 }
 
 deleteAllBtn.addEventListener("click",()=>{
-    tasks = tasks.filter(task => !task.isDone);
+    tasks = [];
+    renderTodos();    
     renderDoneList();
     saveTasks();
 });

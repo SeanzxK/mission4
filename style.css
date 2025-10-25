@@ -144,4 +144,9 @@ padding-bottom: 20px;
 margin-bottom: 20px;
 }
 
+.task-done td {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
 
